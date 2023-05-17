@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario de Soporte</title>
+  <style>
+    /* Estilos CSS para el formulario */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>CNC Notes</h1>
+
+  <form id="support-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="number">Number:</label>
+    <input type="text" id="number" name="number" required>
+
+    <label for="email">E-Mail:</label>
+    <input type="text" id="email" name="email" required>
+ 	<label for="email">E-Mail Associated with the account:</label>
+    <input type="text" id="email" name="email" required>
+
+
+    <label for="product">Product:</label>
+    <input type="text" id="product" name="product" required>
+
+    <label for="issue">Issue:</label>
+    <textarea id="issue" name="issue" required></textarea>
+
+    <label for="resolve">Troubleshooting Followed:</label>
+    <textarea id="resolve" name="resolve" required></textarea>
+
+
+    <button type="button" onclick="copyFormData()">Copy</button>
+  </form>
+
+  <script>
+    function copyFormData() {
+      var form = document.getElementById("support-form");
+      var formData = "";
+
+      for (var i = 0; i < form.elements.length; i++) {
+        var element = form.elements[i];
+
+        // Ignore buttons and fieldsets
+        if (element.tagName !== "BUTTON" && element.tagName !== "FIELDSET") {
+          formData += element.name + ": " + element.value + "\n";
+        }
+      }
+
+      if (formData) {
+        navigator.clipboard.writeText(formData)
+          .then(function() {
+            alert("Form data copied to clipboard!");
+          })
+          .catch(function(error) {
+            console.error("Unable to copy form data to clipboard.", error);
+          });
+      } else {
+        alert("No form data to copy!");
+      }
+    }
+  </script>
+</body>
+</html>
